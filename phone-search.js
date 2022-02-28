@@ -45,11 +45,17 @@ const loadPhoneDetails = phoneDetails => {
     Div.innerHTML = ` <img src="${phoneDetails.image}" class="card-img-top" style="width: 300px">
     <div class="card-body">
         <h5 class="card-title">${phoneDetails.name}</h5>
-        <p class="card-text">${phoneDetails.releaseDate}</p>
-        <p class="card-text">${phoneDetails.brand}</p>
-        <p class="card-text">${phoneDetails.mainFeatures.storage}</p>
-        <p class="card-text">${phoneDetails.mainFeatures.displaySize}</p>
-        <p class="card-text"></p>
+        <p class="card-text">Release Date: ${phoneDetails.releaseDate}</p>
+        <p class="card-text">Brand: <b>${phoneDetails.brand}</b></p>
+        <p class="card-text">Chipset: <b>${phoneDetails.mainFeatures.chipSet} </b> </p>
+        <p class="card-text">Memory: <b> ${phoneDetails.mainFeatures.memory}</b></p>
+        <p class="card-text">Storage: <b> ${phoneDetails.mainFeatures.storage}</b></p>
+        <p class="card-text">Display Size: <b> ${phoneDetails.mainFeatures.displaySize}</b></p>
+       <p class="card-text">Other: WLAN: <b> ${phoneDetails.others.WLAN} </b>
+                              Bluetooth: <b> ${phoneDetails.others.Bluetooth} </b>
+                                    GPS: <b> ${phoneDetails.others.GPS} </b>
+                    </p>
+        <p class="card-text">Sensors: <b>${phoneDetails.mainFeatures.sensors}</b></p>
         <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>  `;
     singleResultDiv.appendChild(Div);
