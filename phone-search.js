@@ -21,6 +21,8 @@ const searchPhone = () => {
 
 const displaySearchResults = data => {
     console.log(data.length);
+    const twenty = data.slice(0, 20);
+    console.log(twenty);
     const searchResultDiv = document.getElementById('search-result-section');
     searchResultDiv.textContent = '';
     if (data.length == 0) {
@@ -32,7 +34,7 @@ const displaySearchResults = data => {
         numberOfResultsFoundDiv.innerHTML = `<p class="text-success text-center"> ${data.length} result(s) found </p> `;
 
     }
-    data.forEach(phone => {
+    twenty.forEach(phone => {
         const Div = document.createElement('div');
         Div.classList.add('col');
         Div.innerHTML = ` <div class="col">
