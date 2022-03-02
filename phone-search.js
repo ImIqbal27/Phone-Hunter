@@ -7,11 +7,13 @@ const searchPhone = () => {
     searchResultDiv.textContent = '';
     const singleResultDiv = document.getElementById('single-phone-details');
     singleResultDiv.textContent = '';
+    toggleSpinner('block');
     if (searchText == '') {
         const numberOfResultsFoundDiv = document.getElementById('numberof-results-found');
         numberOfResultsFoundDiv.innerHTML = `<p class="text-danger text-center"> <b> You didn't type anything ! </b>    </p> `;
         const showAllBtn = document.getElementById('show-all');
         showAllBtn.textContent = '';
+        toggleSpinner('none');
 
     }
     else {
@@ -19,6 +21,10 @@ const searchPhone = () => {
             .then(response => response.json())
             .then(info => displaySearchResults(info.data))//here 2nd '.data'=>  from api//
     }
+}
+////////////////////////////////////spinner/////////////////////////////
+const toggleSpinner = displayStatus => {
+    document.getElementById('spinner').style.display = displayStatus;
 }
 //////////////////////////////////// Display Search Results/////////////////////////////
 const displaySearchResults = data => {
@@ -28,8 +34,10 @@ const displaySearchResults = data => {
     if (data.length == 0) {
         const numberOfResultsFoundDiv = document.getElementById('numberof-results-found');
         numberOfResultsFoundDiv.innerHTML = `<p class="text-danger text-center"> <b> No result found ! </b> </p> `;
+        toggleSpinner('none');
         const showAllBtn = document.getElementById('show-all');
         showAllBtn.textContent = '';
+
     }
     else {
         const numberOfResultsFoundDiv = document.getElementById('numberof-results-found');
@@ -40,7 +48,7 @@ const displaySearchResults = data => {
             Div.classList.add('col');
             Div.innerHTML = ` <div class="col mb-3">
             <div class="card h-50  text-center  image-style">
-                <img src="${phone.image}" class="card-img-top " alt="...">
+                <img src="${phone.image}" class="card-img-top mb-2" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${phone.phone_name}</h5>
                     <p class="card-text">${phone.brand}</p>
@@ -51,6 +59,7 @@ const displaySearchResults = data => {
           ` ;
             searchResultDiv.appendChild(Div);
         })
+        toggleSpinner('none');
 
         const showAllDiv = document.getElementById('show-all');
         showAllDiv.innerHTML = ` <button onclick="showAllResults()" class="mb-5  mt-5 btn btn-success mx-auto"> Show All Results </button> `;
@@ -71,7 +80,7 @@ const loadPhoneDetails = phoneDetails => {
     singleResultDiv.textContent = '';
     const Div = document.createElement('div');
     Div.classList.add('card');
-    Div.innerHTML = ` <img src="${phoneDetails.image}" class="card-img-top mx-auto single-image-detail" style="width: 300px">
+    Div.innerHTML = ` <img src="${phoneDetails.image}" class="card-img-top mx-auto  single-image-detail" style="width: 300px">
     <div class="card-body">
         <h2 class="card-title  text-success mx-auto text-center">${phoneDetails.name}</h2>
         <p class="card-text">Release Date: ${phoneDetails.releaseDate}</p>  
@@ -94,6 +103,7 @@ const loadPhoneDetails = phoneDetails => {
         <a href="#" class="btn btn-success mx-auto text-center">Show Video</a>
     </div>  `;
     singleResultDiv.appendChild(Div);
+    toggleSpinner('none');
 }
 
 showAllResults = () => {
