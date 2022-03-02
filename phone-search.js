@@ -105,8 +105,6 @@ const loadPhoneDetails = phoneDetails => {
                         NFC: <b> ${phoneDetails.others ? phoneDetails.others.NFC : "not found"} </b>  <br>
                         WLAN: <b> ${phoneDetails.others ? phoneDetails.others.WLAN : "not found"} </b>  <br>
                     </p>
-      
-        <a href="#" class="btn btn-success mx-auto text-center">Show Video</a>
     </div>  `;
     singleResultDiv.appendChild(Div);
     toggleSpinner('none');
