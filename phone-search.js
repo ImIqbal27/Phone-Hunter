@@ -38,22 +38,25 @@ const displaySearchResults = data => {
         twentyResultsShow.forEach(phone => {
             const Div = document.createElement('div');
             Div.classList.add('col');
-            Div.innerHTML = ` <div class="col">
-            <div class="card h-50">
-                <img src="${phone.image}" class="card-img-top" alt="...">
+            Div.innerHTML = ` <div class="col mb-3">
+            <div class="card h-50  text-center  image-style">
+                <img src="${phone.image}" class="card-img-top " alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${phone.phone_name}</h5>
                     <p class="card-text">${phone.brand}</p>
                 <a  onclick="loadDetail('${phone.slug}')" href="#single-phone-details" class="btn btn-success">Show Details</a>
-                    <p class="card-text"></p>
                 </div>
             </div>
         </div> 
           ` ;
             searchResultDiv.appendChild(Div);
         })
+
         const showAllDiv = document.getElementById('show-all');
-        showAllDiv.innerHTML = ` <button class="mb-5  mt-5 btn btn-info mx-auto"> Show All Results </button> `;
+        showAllDiv.innerHTML = ` <button onclick="showAllResults()" class="mb-5  mt-5 btn btn-success mx-auto"> Show All Results </button> `;
+        if (data.length < 21) {
+            showAllDiv.style.display = 'none';
+        }
     }
 }
 //////////////////////////////Load Details Fetch/////////////////////
@@ -68,9 +71,9 @@ const loadPhoneDetails = phoneDetails => {
     singleResultDiv.textContent = '';
     const Div = document.createElement('div');
     Div.classList.add('card');
-    Div.innerHTML = ` <img src="${phoneDetails.image}" class="card-img-top" style="width: 300px">
+    Div.innerHTML = ` <img src="${phoneDetails.image}" class="card-img-top mx-auto single-image-detail" style="width: 300px">
     <div class="card-body">
-        <h2 class="card-title  text-success">${phoneDetails.name}</h2>
+        <h2 class="card-title  text-success mx-auto text-center">${phoneDetails.name}</h2>
         <p class="card-text">Release Date: ${phoneDetails.releaseDate}</p>  
         <p class="card-text">Brand: <b>${phoneDetails.brand}</b></p>
         <p class="card-text">Chipset: <b>${phoneDetails.mainFeatures.chipSet} </b> </p>
@@ -88,7 +91,11 @@ const loadPhoneDetails = phoneDetails => {
                         WLAN: <b> ${phoneDetails?.others?.WLAN} </b>  <br>
                     </p>
       
-        <a href="#" class="btn btn-success">Show Video</a>
+        <a href="#" class="btn btn-success mx-auto text-center">Show Video</a>
     </div>  `;
     singleResultDiv.appendChild(Div);
+}
+
+showAllResults = () => {
+
 }
