@@ -28,12 +28,12 @@ const toggleSpinner = displayStatus => {
 }
 //////////////////////////////////// Display Search Results/////////////////////////////
 const displaySearchResults = data => {
-    // console.log(data.length);
+    console.log(data);
     const searchResultDiv = document.getElementById('search-result-section');
     searchResultDiv.textContent = '';
     if (data.length == 0) {
         const numberOfResultsFoundDiv = document.getElementById('numberof-results-found');
-        numberOfResultsFoundDiv.innerHTML = `<p class="text-danger text-center"> <b> No result found ! </b> </p> `;
+        numberOfResultsFoundDiv.innerHTML = `<p class="text-danger text-center"> <b> No phone found ! </b> </p> `;
         toggleSpinner('none');
         const showAllBtn = document.getElementById('show-all');
         showAllBtn.textContent = '';
@@ -61,11 +61,12 @@ const displaySearchResults = data => {
         })
         toggleSpinner('none');
 
-        const showAllDiv = document.getElementById('show-all');
-        showAllDiv.innerHTML = ` <button onclick="showAllResults()" class="mb-5  mt-5 btn btn-success mx-auto"> Show All Results </button> `;
         if (data.length < 21) {
             showAllDiv.style.display = 'none';
         }
+        const showAllDiv = document.getElementById('show-all');
+        showAllDiv.innerHTML = ` <button onclick="showAllResults()" class="mb-5  mt-5 btn btn-success mx-auto"> Show All Results </button> `;
+
     }
 }
 //////////////////////////////Load Details Fetch/////////////////////
@@ -76,11 +77,16 @@ const loadDetail = id_slug => {
 ////////////////// Load Single Phone Details////////////////////////////
 const loadPhoneDetails = phoneDetails => {
     console.log(phoneDetails);
+
     const singleResultDiv = document.getElementById('single-phone-details');
     singleResultDiv.textContent = '';
     const Div = document.createElement('div');
     Div.classList.add('card');
-    Div.innerHTML = ` <img src="${phoneDetails.image}" class="card-img-top mx-auto  single-image-detail" style="width: 300px">
+    if (phoneDetails.releaseDate == "") {
+        phoneDetails.releaseDate = 'No release date found !';
+    }
+
+    Div.innerHTML = ` <img src="${phoneDetails.image}" class="img-fluid card-img-top mx-auto  single-image-detail" style="width: 300px">
     <div class="card-body">
         <h2 class="card-title  text-success mx-auto text-center">${phoneDetails.name}</h2>
         <p class="card-text">Release Date: ${phoneDetails.releaseDate}</p>  
@@ -92,12 +98,12 @@ const loadPhoneDetails = phoneDetails => {
         <p class="card-text">Sensors: <b>${phoneDetails.mainFeatures.sensors}</b></p>
        <p class="card-text text-success">Others Info   </p>
        <p class="card-text ">   
-                        Bluetooth: <b> ${phoneDetails?.others?.Bluetooth} </b>   <br>
-                        GPS: <b> ${phoneDetails?.others?.GPS} </b>   <br> 
-                        Radio: <b> ${phoneDetails?.others?.Radio} </b>   <br>
-                        USB: <b> ${phoneDetails?.others?.USB} </b>   <br>
-                        NFC: <b> ${phoneDetails?.others?.NFC} </b>  <br>
-                        WLAN: <b> ${phoneDetails?.others?.WLAN} </b>  <br>
+                        Bluetooth: <b> ${phoneDetails.others ? phoneDetails.others.Bluetooth : " not found"} </b>   <br>
+                        GPS: <b> ${phoneDetails.others ? phoneDetails.others.GPS : "not found"} </b>   <br> 
+                        Radio: <b> ${phoneDetails.others ? phoneDetails.others.Radio : "not found"} </b>   <br>
+                        USB: <b> ${phoneDetails.others ? phoneDetails.others.USB : "not found"} </b>   <br>
+                        NFC: <b> ${phoneDetails.others ? phoneDetails.others.NFC : "not found"} </b>  <br>
+                        WLAN: <b> ${phoneDetails.others ? phoneDetails.others.WLAN : "not found"} </b>  <br>
                     </p>
       
         <a href="#" class="btn btn-success mx-auto text-center">Show Video</a>
@@ -105,7 +111,4 @@ const loadPhoneDetails = phoneDetails => {
     singleResultDiv.appendChild(Div);
     toggleSpinner('none');
 }
-
-showAllResults = () => {
-
-}
+///////////////////////////////////////
