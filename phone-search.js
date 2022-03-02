@@ -98,12 +98,12 @@ const loadPhoneDetails = phoneDetails => {
         <p class="card-text">Sensors: <b>${phoneDetails.mainFeatures.sensors}</b></p>
        <p class="card-text text-success">Others Info   </p>
        <p class="card-text ">   
-                        Bluetooth: <b> ${phoneDetails.others ? phoneDetails.others.Bluetooth : " not found"} </b>   <br>
-                        GPS: <b> ${phoneDetails.others ? phoneDetails.others.GPS : "not found"} </b>   <br> 
-                        Radio: <b> ${phoneDetails.others ? phoneDetails.others.Radio : "not found"} </b>   <br>
-                        USB: <b> ${phoneDetails.others ? phoneDetails.others.USB : "not found"} </b>   <br>
-                        NFC: <b> ${phoneDetails.others ? phoneDetails.others.NFC : "not found"} </b>  <br>
-                        WLAN: <b> ${phoneDetails.others ? phoneDetails.others.WLAN : "not found"} </b>  <br>
+                        Bluetooth: <b> ${phoneDetails.others ? phoneDetails.others.Bluetooth : " Not found !"} </b>   <br>
+                        GPS: <b> ${phoneDetails.others ? phoneDetails.others.GPS : "Not found !"} </b>   <br> 
+                        Radio: <b> ${phoneDetails.others ? phoneDetails.others.Radio : "Not found !"} </b>   <br>
+                        USB: <b> ${phoneDetails.others ? phoneDetails.others.USB : "Not found !"} </b>   <br>
+                        NFC: <b> ${phoneDetails.others ? phoneDetails.others.NFC : "Not found !"} </b>  <br>
+                        WLAN: <b> ${phoneDetails.others ? phoneDetails.others.WLAN : "Not found !"} </b>  <br>
                     </p>
     </div>  `;
     singleResultDiv.appendChild(Div);
