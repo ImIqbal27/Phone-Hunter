@@ -1,3 +1,10 @@
+.container {
+    background-image: url(images/iphone.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
 #spinner {
     display: none;
     margin-left: auto;
@@ -15,4 +22,20 @@
     transform: scale(1.1);
     transition: transform 2s ease-out;
 
+}
+
+.footer-div {
+
+    text-align: center;
+    margin-top: 540px;
+    height: 70px;
+}
+
+.footer-div p {
+    padding: 20px;
+}
+
+.footer-div p a {
+    color: #000;
+    text-decoration: none;
 }

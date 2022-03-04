@@ -47,7 +47,7 @@ const displaySearchResults = data => {
             const Div = document.createElement('div');
             Div.classList.add('col');
             Div.innerHTML = ` <div class="col mb-3">
-            <div class="card h-50  text-center  image-style">
+            <div class="card h-50  text-center  image-style  card-style">
                 <img src="${phone.image}" class="card-img-top mb-2" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${phone.phone_name}</h5>
@@ -59,7 +59,11 @@ const displaySearchResults = data => {
           ` ;
             searchResultDiv.appendChild(Div);
         })
+
         toggleSpinner('none');
+
+        // const bgImage = document.getElementById('container');
+        // bgImage.style.backgroundColor = 'none';
 
         if (data.length < 21) {
             showAllDiv.style.display = 'none';
